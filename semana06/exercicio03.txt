@@ -1,0 +1,7 @@
+1) Qual é o limite de bytes a serem enviados por pacotes TCP e UDP?
+
+O protocolo TCP/IP permite o uso de pacotes com até 64 kbytes, porém, geralmente são utilizados pacotes de até 1500 bytes, que é o tamanho máximo de um frame Ethernet. O tamanho máximo possível para um datagrama UDP é de 65.507 bytes (65.535 - 8 bytes do cabeçalho UDP - 20 bytes do cabeçalho IP), devido ao protocolo IPv4. No IPv6, é possível ter pacotes de tamanho maior que 65.535.
+
+3) Qual é a diferença entre as implementações TCP e UDP para esse problema?
+
+O UDP não é confiável - as mensagens enviadas podem não chegar ao destino. O TCP lida com isso tentando garantir a entrega das mensagens ao destino. O UDP é um protocolo mais leve, pois não realiza o handshake para estabelecer e encerrar conexões, nem mantém registros das conexões ativas. O TCP realiza essas tarefas. Como o UDP não é orientado à conexão, ele pode enviar pacotes em broadcast ou multicast sem problemas. O TCP é projetado para funcionar em comunicações unicast.
