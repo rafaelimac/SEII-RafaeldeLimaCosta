@@ -1,0 +1,55 @@
+Processos
+
+Um processo é uma instância em execução de um programa. À medida que os programas e sistemas se tornam mais complexos, pode haver a ocorrência de múltiplos processos simultâneos. Essa possibilidade decorre das características do programa e do sistema.
+
+[Observando um processo]:
+
+- Identificadores de Processo:
+
+Cada processo no Linux é identificado por um ID exclusivo, composto por um número de 16 bits atribuído sequencialmente pelo Linux a cada novo processo criado. Cada processo possui um processo pai (exceto os processos zumbis). Podemos pensar em processos de forma semelhante a uma estrutura de árvore.
+
+- Visualizando processos em execução:
+
+O comando "ps" mostra os processos em execução no sistema.
+
+- Encerrando um processo:
+
+Usando o comando "kill" e especificando o ID do processo, é possível encerrar o processo em execução.
+
+[Criando processos]:
+
+- Usando o comando "system":
+
+A função "system" na biblioteca padrão C fornece uma maneira fácil de executar um comando de um programa.
+
+- Usando as funções "fork" e "exec":
+
+Essas funções utilizam o nome do programa como argumento para criar um novo processo dentro do programa.
+
+- Agendamento de processos:
+
+O Linux agenda os processos pai e filho independentemente; não há garantia de qual processo será executado primeiro, nem por quanto tempo ele será executado antes que o Linux interrompa sua execução e passe para outro processo (ou algum outro processo no sistema).
+
+[Sinais]:
+
+Um sinal é uma mensagem especial enviada a um processo. Os sinais são assíncronos; quando um processo recebe um sinal, ele o processa imediatamente, sem concluir a função atual ou mesmo a linha de código atual. Existem vários sinais diferentes, cada um com um significado específico. Cada tipo de sinal é especificado por um número de sinal, mas, nos programas, costuma-se referir a um sinal pelo seu nome.
+
+[Terminação de Processos]:
+
+Normalmente, um processo é encerrado de duas maneiras. Ou o programa em execução chama a função "exit", ou a função "main" do programa retorna. Cada processo possui um código de saída: um número que o processo retorna ao seu pai. Esse código de saída indica o status de término do processo.
+
+- Aguardando a conclusão de um processo:
+
+Em algumas situações, é desejável que o processo pai aguarde até que um ou mais processos filhos sejam concluídos. Para isso, é possível utilizar a família de funções "wait".
+
+- O sistema "wait":
+
+A função "wait" é usada para bloquear a chamada do processo até que um dos processos filhos seja encerrado ou ocorra algum erro.
+
+- Processos zumbis:
+
+Se um processo filho termina enquanto o processo pai chamou a função "wait", o processo filho desaparece e seu status de encerramento é transmitido aos seus parentes por meio da chamada "wait". No entanto, se o processo filho termina sem que o processo pai tenha chamado a função "wait", ele se torna um processo zumbi.
+
+- Limpeza assíncrona de processos filhos:
+
+Se houver necessidade de limpar os processos filhos que foram concluídos para evitar processos zumbis, é possível fazer isso
